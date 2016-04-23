@@ -1,0 +1,3 @@
+easy_install flask
+easy_install flask-login
+easy_install flask-wtf
