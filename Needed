@@ -1,3 +1,20 @@
 easy_install flask
 easy_install flask-login
 easy_install flask-wtf
+easy_install flask-sqlalchemy
+easy_install mysql-python | Resolve error with : (export PATH=$PATH:/usr/local/mysql/bin)
+
+
+
+MySQL : 
+	CREATE DATABASE development;
+	CREATE TABLE users (
+uid INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+firstname VARCHAR(100) NOT NULL,
+lastname VARCHAR(100) NOT NULL,
+email VARCHAR(120) NOT NULL UNIQUE,
+pwdhash VARCHAR(100) NOT NULL
+);
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://your-username:your-password@localhost/development'
+
