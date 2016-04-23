@@ -1,23 +1,11 @@
-from flask import Flask, render_template, request, flash
+from integrale_flask import app
+from flask import render_template, request, flash
 from forms import ContactForm
 from flask.ext.mail import Message, Mail
-
+ 
 mail = Mail()
 
-app = Flask(__name__)
-
-app.config["MAIL_SERVER"] = "smtp.gmail.com"
-app.config["MAIL_PORT"] = 465
-app.config["MAIL_USE_SSL"] = True
-app.config["MAIL_USERNAME"] = ''
-app.config["MAIL_PASSWORD"] = ''
- 
-mail.init_app(app)
-
-
-
-app.secret_key = 'development key'
-
+# @app.route() mappings start here
 @app.route("/")
 def index():
     return render_template('index.html')
