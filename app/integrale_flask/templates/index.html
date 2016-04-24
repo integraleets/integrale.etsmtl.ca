@@ -20,15 +20,13 @@
 
 <div class="row"> <!-- Creates horizontal overflow mais sans, le footer arrive à droite--> 
 	<div class="col-md-8 col-md-offset-2">
-		<h4>Drapeau</h4>
-		<p>Levé du drapeau
-		L'étude des drapeaux et pavillons est le domaine de la vexillologie. Un drapeau est une pièce d’étoffe attachée à une hampe, qui représente la « personne morale » d'un groupe ou d'une communauté : un pays (une nation), une ville, une compagnie commerciale ou d'armement, un régiment... Il a très fréquemment la forme d'un rectangle aux proportions 2:3, mais il existe des variations, aussi bien sur la forme que sur les proportions. Il est la forme figurée du nom et peut se décliner en un blason, un sceau ou une livrée. Il permet, grâce à ses couleurs et à son emblème, de se distinguer d'autres personnalités équivalentes ou concurrentes dans le cadre de rassemblements pacifiques ou guerriers. Sa destruction ou sa prise signifient la dissolution ou la capture de la personnalité juridique qu'il représente. Les plus anciennes représentations de "drapeaux" connues sont chinoises. Elles dateraient du deuxième millénaire avant Jésus-Christ. C'est aussi aux Chinois qu'est attribuée l'invention de la soie tissée, et donc des premiers véritables drapeaux semblables à ceux d'aujourd'hui.</p>
-
-		<h4>5@X </h4>
-		<p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-		<h4>Bucket List</h4>
-		<p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+		<ul class=entries>
+  			{% for entry in entries %}
+    		<li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
+			{% else %}
+			<li><em>Unbelievable.  No entries here so far</em>
+			{% endfor %}
+		</ul>
 	</div>
 </div>
 {% endblock %}

@@ -1,6 +1,7 @@
 # Integrale.etsmtl.ca
 
 ## How to
+	$ see [http://flask.pocoo.org/docs/0.10/installation/#virtualenv](http://flask.pocoo.org/docs/0.10/installation/#virtualenv) for dev environment
 
 ## Utilisation
  

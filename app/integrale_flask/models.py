@@ -22,3 +22,35 @@ class User(db.Model):
    
   def check_password(self, password):
     return check_password_hash(self.pwdhash, password)
+
+  @property
+  def is_authenticated(self):
+    return True
+
+  @property
+  def is_active(self):
+    return True
+
+  @property
+  def is_anonymous(self):
+    return False
+
+  def get_id(self):
+    try:
+      return unicode(self.uid)  # python 2
+    except NameError:
+      return str(self.uid)  # python 3
+
+  def __repr__(self):
+    return '<User %r>' % (self.nickname)
+
+
+class Entry(db.Model):
+  __tablename__ = 'entries'
+  uid = db.Column(db.Integer, primary_key = True)
+  title = db.Column(db.String(120))
+  text = db.Column(db.Text)
+  
+  def __init__(self, title, text):
+    self.title = title.title()
+    self.text = text.title()

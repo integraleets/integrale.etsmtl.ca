@@ -20,7 +20,7 @@
 					{% if 'email' in session %}
 					<li><a href="{{ url_for('profile') }}">Profile</a></li>
 					<li><a href="{{ url_for('signout') }}">Sign Out</a></li>
-					<li><a href="/addNews">Post news</a></li>
+					<li><a href="{{ url_for('addentry') }}">Post news</a></li>
 					{% else %}
 					<li><a href="{{ url_for('signup') }}">Sign Up</a></li>
 					<li><a href="{{ url_for('signin') }}">Sign In</a></li>

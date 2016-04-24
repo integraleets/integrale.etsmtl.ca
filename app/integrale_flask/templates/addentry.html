@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}Ajouter des nouvelles{% endblock %}
+{% block content %}
+  <h2>Ajouter des nouvelles</h2>
+ 
+    {% for message in form.title.errors %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
+ 
+    {% for message in form.text.errors %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
+
+ 
+    <form action="{{ url_for('addentry') }}" method=post>
+		
+	  {{ form.hidden_tag() }}
+ 
+      {{ form.title.label }}
+      {{ form.title }}
+ 
+      {{ form.text.label }}
+      {{ form.text }}
+ 
+      {{ form.submit }}
+    </form>
+ 
+{% endblock %}

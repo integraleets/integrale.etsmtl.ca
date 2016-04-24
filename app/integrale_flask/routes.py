@@ -1,15 +1,25 @@
 from integrale_flask import app
+from functools import wraps
 from flask import render_template, request, flash, session, url_for, redirect
-from forms import ContactForm, SignupForm, SigninForm
+from forms import ContactForm, SignupForm, SigninForm, EntrieForm
 from flask.ext.mail import Message, Mail
-from models import db, User
+from models import db, User, Entry
  
 mail = Mail()
 
 # @app.route() mappings start here
 @app.route("/")
 def index():
-    return render_template('index.html')
+  entries = Entry.query.order_by(Entry.uid)
+  return render_template('index.html', entries=entries)
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'email' not in session:
+            return redirect(url_for('signin', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
@@ -44,8 +54,27 @@ def profile():
   else:
     return render_template('profile.html')
 
+# --------------------------------------------------------------------------------------------------------
 
+@app.route('/addentry', methods=['GET', 'POST'])
+@login_required
+def addentry():
+  form = EntrieForm()
+   
+  if request.method == 'POST':
+    if form.validate() == False:
+		return render_template('addentry.html', form=form)
+      
+    else:
+      newentrie = Entry(form.title.data, form.text.data)
+      db.session.add(newentrie)
+      db.session.commit()
+      return redirect(url_for('index'))
+   
+  elif request.method == 'GET':
+    return render_template('addentry.html', form=form)
 
+# --------------------------------------------------------------------------------------------------------
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
   form = SignupForm()
@@ -67,6 +96,7 @@ def signup():
   elif request.method == 'GET':
     return render_template('signup.html', form=form)
 
+# --------------------------------------------------------------------------------------------------------
 
 @app.route('/signin', methods=['GET', 'POST'])
 def signin():

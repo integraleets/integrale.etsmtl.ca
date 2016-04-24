@@ -1,6 +1,6 @@
 from flask.ext.wtf import Form
 from wtforms import TextField, TextAreaField, SubmitField, validators, ValidationError, PasswordField 
-from models import db, User
+from models import db, User, Entry
  
 class ContactForm(Form):
   name = TextField("Name", [validators.Required("Enter your name.")])
@@ -8,6 +8,21 @@ class ContactForm(Form):
   subject = TextField("Subject", [validators.Required("Enter your subject")])
   message = TextAreaField("Message", [validators.Required("Enter your message")])
   submit = SubmitField("Send")
+
+class EntrieForm(Form):
+  title = TextField("Title", [validators.Required("Please enter the title")])
+  text = TextAreaField("Text", [validators.Required("Please enter the text")])
+  submit = SubmitField("Create entrie")
+ 
+  def __init__(self, *args, **kwargs):
+    Form.__init__(self, *args, **kwargs)
+	
+  def validate(self):
+    if not Form.validate(self):
+      return False
+     
+    else:
+      return True
 
 class SignupForm(Form):
   firstname = TextField("First name",  [validators.Required("Please enter your first name.")])
