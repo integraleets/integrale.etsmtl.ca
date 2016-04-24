@@ -1,20 +1,7 @@
 {% extends "layout.html" %}
-{% block title %}Accueil{% endblock %}
-{% block head %}
-  {{ super() }}
-  <style>
-	.jumbotron {
-	background-image: url("../static/media/log.png");
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
-	height: 300px;}
-  </style>
-{% endblock %}
+{% block title %}Nouvelles{% endblock %}
 {% block content %}
-<div class="jumbotron">
-	<p class="lead"></p>
-</div>
+<h2>Nouvelles</h2>
 <div class="row"> <!-- Creates horizontal overflow mais sans, le footer arrive à droite--> 
 	<div class="col-md-8 col-md-offset-2">
 		<ul class=entries>

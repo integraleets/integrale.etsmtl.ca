@@ -14,6 +14,17 @@ def index():
   entries = Entry.query.order_by(desc(Entry.uid))
   return render_template('index.html', entries=entries)
 
+@app.route("/news")
+def news():
+  entries = Entry.query.order_by(desc(Entry.uid))
+  return render_template('news.html', entries=entries)
+
+@app.route("/about")
+def about():
+  entries = Entry.query.order_by(desc(Entry.uid))
+  return render_template('about.html', entries=entries)
+
+
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):

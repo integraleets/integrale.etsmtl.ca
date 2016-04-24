@@ -11,22 +11,21 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-	<link rel="stylesheet" href="/static/menu.css" />
-
+	<link rel="stylesheet" href="/static/css/menu.css" />
+	<link rel="stylesheet" href="/static/css/footer.css" />
+	
 	<title>{% block title %}{% endblock %} - Intégrale</title>
 	{% endblock %}
 </head>
 <body class="stretched no-transition">
 	<div id="wrapper" class="clearfix">
-	<div id="content">
-	<div class="header">
-	
-	{% include 'menu.html' %}
-		
+		<div id="content">
+			<div class="header">
+				{% include 'menu.html' %}
+			</div>
+			{% block content %}{% endblock %}
+		</div>
 	</div>
-		{% block content %}{% endblock %}
-	</div>
-	</div>
-	{% include 'footer.html' %}
+{% include 'footer.html' %}
 </body>
 </html>
