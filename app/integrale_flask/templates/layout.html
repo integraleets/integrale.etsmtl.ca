@@ -19,13 +19,15 @@
 </head>
 <body class="stretched no-transition">
 	<div id="wrapper" class="clearfix">
+		<div class="header">
+			{% include 'menu.html' %}
+		</div>
 		<div id="content">
-			<div class="header">
-				{% include 'menu.html' %}
-			</div>
 			{% block content %}{% endblock %}
 		</div>
+		<div id="footer">
+			{% include 'footer.html' %}
+		</div>
 	</div>
-{% include 'footer.html' %}
 </body>
 </html>
