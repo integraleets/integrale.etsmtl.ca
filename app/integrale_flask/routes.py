@@ -1,7 +1,7 @@
 from integrale_flask import app
 from functools import wraps
 from flask import render_template, request, flash, session, url_for, redirect
-from forms import ContactForm, SignupForm, SigninForm, EntrieForm
+from forms import ContactForm, SignupForm, LoginForm, EntrieForm
 from flask.ext.mail import Message, Mail
 from models import db, User, Entry
  
@@ -17,7 +17,7 @@ def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if 'email' not in session:
-            return redirect(url_for('signin', next=request.url))
+            return redirect(url_for('login', next=request.url))
         return f(*args, **kwargs)
     return decorated_function
 
@@ -45,12 +45,12 @@ def contact():
 def profile():
  
   if 'email' not in session:
-    return redirect(url_for('signin'))
+    return redirect(url_for('login'))
  
   user = User.query.filter_by(email = session['email']).first()
  
   if user is None:
-    return redirect(url_for('signin'))
+    return redirect(url_for('login'))
   else:
     return render_template('profile.html')
 
@@ -98,29 +98,29 @@ def signup():
 
 # --------------------------------------------------------------------------------------------------------
 
-@app.route('/signin', methods=['GET', 'POST'])
-def signin():
-  form = SigninForm()
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+  form = LoginForm()
  
   if 'email' in session:
     return redirect(url_for('profile')) 
    
   if request.method == 'POST':
     if form.validate() == False:
-      return render_template('signin.html', form=form)
+      return render_template('login.html', form=form)
     else:
       session['email'] = form.email.data
       return redirect(url_for('profile'))
                  
   elif request.method == 'GET':
-    return render_template('signin.html', form=form)
+    return render_template('login.html', form=form)
 
 
-@app.route('/signout')
-def signout():
+@app.route('/logout')
+def logout():
  
   if 'email' not in session:
-    return redirect(url_for('signin'))
+    return redirect(url_for('login'))
      
   session.pop('email', None)
   return redirect(url_for('index'))
