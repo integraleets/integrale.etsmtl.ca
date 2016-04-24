@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}Nouvelles{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style>
+	.jumbotron {
+	background-image: url("../static/logo.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 300px;}
+  </style>
+{% endblock %}
+{% block content %}
+<div class="jumbotron">
+	<p class="lead"></p>
+</div>
+
+</div>
+
+<div class="row"> <!-- Creates horizontal overflow mais sans, le footer arrive à droite--> 
+	<div class="col-md-8 col-md-offset-2">
+		<ul class=entries>
+  			{% for entry in entries %}
+    		<li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
+			{% else %}
+			<li><em>Unbelievable.  No entries here so far</em>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endblock %}

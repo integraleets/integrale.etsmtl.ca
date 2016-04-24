@@ -1,3 +1,32 @@
 easy_install flask
 easy_install flask-login
 easy_install flask-wtf
+easy_install flask-sqlalchemy
+easy_install mysql-python | Resolve error with : (export PATH=$PATH:/usr/local/mysql/bin)
+
+
+
+MySQL Should change DB to something else: 
+	CREATE DATABASE development;
+	CREATE TABLE users (
+uid INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+firstname VARCHAR(100) NOT NULL,
+lastname VARCHAR(100) NOT NULL,
+email VARCHAR(120) NOT NULL UNIQUE,
+pwdhash VARCHAR(100) NOT NULL
+);
+
+
+CREATE TABLE entries ( uid INT NOT NULL PRIMARY KEY AUTO_INCREMENT, title VARCHAR(120) NOT NULL, text TEXT NOT NULL);
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://your-username:your-password@localhost/development'
+http://flask.pocoo.org/docs/0.10/config/ << config handling
+
+
+
+Things to do :
+Config
+Make everything pretty
+Separate with <!-- --> section of code
+Login_required after login in should bring back to request page
+Account admin
