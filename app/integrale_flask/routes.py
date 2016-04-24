@@ -3,6 +3,7 @@ from functools import wraps
 from flask import render_template, request, flash, session, url_for, redirect
 from forms import ContactForm, SignupForm, LoginForm, EntrieForm
 from flask.ext.mail import Message, Mail
+from sqlalchemy import desc
 from models import db, User, Entry
  
 mail = Mail()
@@ -10,7 +11,7 @@ mail = Mail()
 # @app.route() mappings start here
 @app.route("/")
 def index():
-  entries = Entry.query.order_by(Entry.uid)
+  entries = Entry.query.order_by(desc(Entry.uid))
   return render_template('index.html', entries=entries)
 
 def login_required(f):
