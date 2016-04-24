@@ -3,7 +3,7 @@ from werkzeug import generate_password_hash, check_password_hash
  
 db = SQLAlchemy()
 
-# ---------------------------------------------User class-----------------------------------------------------------
+# ---------------------------------------------User class------------------
 class User(db.Model):
   __tablename__ = 'users'
   uid = db.Column(db.Integer, primary_key = True)
@@ -49,13 +49,14 @@ class User(db.Model):
   def is_admin(self):
 	return self.admin
 
-# ----------------------------------------------Entry class----------------------------------------------------------
+# ----------------------------------------------Entry class----------------
 class Entry(db.Model):
+	
   __tablename__ = 'entries'
   uid = db.Column(db.Integer, primary_key = True)
   title = db.Column(db.String(120))
   text = db.Column(db.Text)
   
   def __init__(self, title, text):
-    self.title = title.title()
-    self.text = text.title()
+    self.title = title
+    self.text = text

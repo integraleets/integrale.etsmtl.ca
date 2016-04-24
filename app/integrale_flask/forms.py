@@ -2,7 +2,7 @@ from flask.ext.wtf import Form
 from wtforms import TextField, TextAreaField, SubmitField, validators, ValidationError, PasswordField 
 from models import db, User, Entry
  
-# -------------------------------------------------ContactForm-------------------------------------------------------
+# -------------------------------------------------ContactForm-------------
 class ContactForm(Form):
   name = TextField("Name", [validators.Required("Enter your name.")])
   email = TextField("Email", [validators.Required("Enter your email"), validators.Email("Enter a valide email.")])
@@ -10,7 +10,7 @@ class ContactForm(Form):
   message = TextAreaField("Message", [validators.Required("Enter your message")])
   submit = SubmitField("Send")
 
-# --------------------------------------------------EntrieForm------------------------------------------------------
+# --------------------------------------------------EntrieForm-------------
 class EntrieForm(Form):
   title = TextField("Title", [validators.Required("Please enter the title")])
   text = TextAreaField("Text", [validators.Required("Please enter the text")])
@@ -26,7 +26,7 @@ class EntrieForm(Form):
     else:
       return True
 
-# ------------------------------------------------SignupForm--------------------------------------------------------
+# ------------------------------------------------SignupForm---------------
 class SignupForm(Form):
   firstname = TextField("First name",  [validators.Required("Please enter your first name.")])
   lastname = TextField("Last name",  [validators.Required("Please enter your last name.")])
@@ -48,7 +48,7 @@ class SignupForm(Form):
     else:
       return True
 
-# -------------------------------------------------LoginForm-------------------------------------------------------
+# -------------------------------------------------LoginForm---------------
 class LoginForm(Form):
   email = TextField("Email",  [validators.Required("Please enter your email address."), validators.Email("Please enter your email address.")])
   password = PasswordField('Password', [validators.Required("Please enter a password.")])

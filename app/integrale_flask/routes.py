@@ -8,7 +8,7 @@ from models import db, User, Entry
  
 mail = Mail()
 
-# ---------------------------------------------INDEX-----------------------------------------------------------
+# ---------------------------------------------INDEX-----------------------
 @app.route("/")
 def index():
   entries = Entry.query.order_by(desc(Entry.uid))
@@ -21,7 +21,7 @@ def login_required(f):
             return redirect(url_for('login', next=request.url))
         return f(*args, **kwargs)
     return decorated_function
-# ----------------------------------------------Contact--------------------------------------------------------
+# ----------------------------------------------Contact--------------------
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
   form = ContactForm()
@@ -42,7 +42,7 @@ def contact():
   elif request.method == 'GET':
     return render_template('contact.html', form=form)
 
-# ----------------------------------------------Profile--------------------------------------------------------
+# ----------------------------------------------Profile--------------------
 @app.route('/profile')
 def profile():
  
@@ -56,7 +56,7 @@ def profile():
   else:
     return render_template('profile.html')
 
-# -----------------------------------------------Addentry---------------------------------------------------------
+# -----------------------------------------------Addentry------------------
 
 @app.route('/addentry', methods=['GET', 'POST'])
 @login_required
@@ -68,15 +68,15 @@ def addentry():
 		return render_template('addentry.html', form=form)
       
     else:
-      newentrie = Entry(form.title.data, form.text.data)
-      db.session.add(newentrie)
-      db.session.commit()
-      return redirect(url_for('index'))
+        newentrie = Entry(form.title.data, form.text.data)
+        db.session.add(newentrie)
+        db.session.commit()
+        return redirect(url_for('index'))
    
   elif request.method == 'GET':
     return render_template('addentry.html', form=form)
 
-# ---------------------------------------------Signup-----------------------------------------------------------
+# ---------------------------------------------Signup----------------------
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
   form = SignupForm()
@@ -98,7 +98,7 @@ def signup():
   elif request.method == 'GET':
     return render_template('signup.html', form=form)
 
-# ---------------------------------------------Login-----------------------------------------------------------
+# ---------------------------------------------Login-----------------------
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -117,7 +117,7 @@ def login():
   elif request.method == 'GET':
     return render_template('login.html', form=form)
 
-# ---------------------------------------------Logout-----------------------------------------------------------
+# ---------------------------------------------Logout----------------------
 @app.route('/logout')
 def logout():
  
@@ -127,12 +127,12 @@ def logout():
   session.pop('email', None)
   return redirect(url_for('index'))
 
-# ---------------------------------------------Membre-----------------------------------------------------------
+# ---------------------------------------------Membre----------------------
 @app.route("/membre")
 def membre():
     return render_template('membre.html')
 
-# ---------------------------------------------Error 404-----------------------------------------------------------
+# ---------------------------------------------Error 404-------------------
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
