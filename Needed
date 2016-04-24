@@ -2,6 +2,7 @@ easy_install flask
 easy_install flask-login
 easy_install flask-wtf
 easy_install flask-sqlalchemy
+easy_installflask-mail
 easy_install mysql-python | Resolve error with : (export PATH=$PATH:/usr/local/mysql/bin)
 
 

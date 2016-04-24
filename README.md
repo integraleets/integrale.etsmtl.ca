@@ -2,9 +2,9 @@
 
 ## How to
 	$ sudo easy_install virtualenv 
+	$ virtualenv venv
 	$ . venv/bin/activate   (mac / Linux ) venv\scripts\activate (windows)
-	(venv) $ pip install Flask
-	(venv) $ easy_install [all dependencies]
+	(venv) $ pip install Flask flask-login flask-wtf flask-sqlalchemy flask-mail mysql-python
 	
 	see [http://flask.pocoo.org/docs/0.10/installation/#virtualenv](http://flask.pocoo.org/docs/0.10/installation/#virtualenv) for dev environment
 
